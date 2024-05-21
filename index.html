@@ -1,0 +1,48 @@
+<!-- Funcionalidades:
+1) Criar selecao para o input de regiões OK
+2) Incluir novos dados; OK 
+3) Criar tabela com os novos dados OK
+4) Criar filtro por região OK
+5) Criar navegações (Anterior e proximo) por pagina na tabela. O limite é 3 dados por página.
+
+HTML/CSS
+1) Personalizar programa;
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela Paises</title>
+</head>
+<body>
+    <h1>Paises</h1>
+    <label>Nome do País</label>
+    <input type="text" name="" id="nome" value="Brasil">
+
+    <label>Região do País</label>
+    <select id="regiao">
+        <option disabled selected value="">Selecione uma região</option>
+    </select>
+    <input type="button" value="Inserir" id="btn" onclick="incluir()">
+
+    <h2>Filtro</h2>
+    <select id="filtroRegioes" onchange="filtrarRegiao()">
+        <option disabled selected value="">Selecione uma região</option>
+    </select>
+    <ul>
+        <li><a href="#" onclick="proximo()">Próximo</a></li>
+    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Pais</th>
+                <th>Região</th>
+            </tr>
+        </thead>
+        <tbody id="tabela">
+        </tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>
