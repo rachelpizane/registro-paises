@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}
+
+body {
+    font-family: "Urbanist";
+    background-color:#ecfaff;
+    color: #224592;
+}
+
+header {
+    background-color: #224592;
+    color: white;
+    padding: .5rem;
+}
+
+header h1 {
+    color: #fff;
+}
+
+main {
+    padding: .5rem;
+}
+
+.regiaoInputDados {
+    display: grid;
+    gap: .5rem;
+    padding: .5rem;
+}
+
+.inputs {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .5rem;
+}
+
+.inputs label {
+    font-weight: bold;
+}
+.form-input {
+    padding: .1rem;
+    outline: none;
+    border: 1px solid #4a75d3;
+}
+.form-input:focus{
+    border: 1px solid #183066
+}
+
+.btn-input{
+    justify-self: end;
+    padding: .4rem .6rem;
+    border-radius: .2rem;
+    background-color: #72d2f1;
+    color: #fff;
+    border: none;
+    transition: .2s;
+}
+
+.btn-input:hover{
+    background-color: #67bcd8;
+    transition: .2s;
+}
