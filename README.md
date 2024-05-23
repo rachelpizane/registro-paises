@@ -18,6 +18,10 @@ Em andamento
 
 Em construção 🛠️
 
+### 3.2 Links
+
+- Live Site URL: [GitHub Page - Tabela de países e regiões](https://rachelpizane.github.io/tabela_paises/)
+
 ## 4. Meu processo 🗺️
 
 ### 4.1. Ferramentas/técnicas utilizadas
