@@ -3,7 +3,6 @@
 *{
     margin: 0px;
     padding: 0px;
-    box-sizing: border-box;
     /* border: 1px solid red; */
 }
 
@@ -83,4 +82,51 @@ main {
 .form-paises__button:hover{
     background-color: #67bcd8;
     transition: .2s;
+}
+
+/*  Seção da Tabela */
+.section-table-paises{
+    padding: .75rem 0;
+    display: grid;
+    gap: .75rem;
+}
+
+.table-paises, th, td {
+    border-collapse: collapse;
+}
+
+
+th, td { 
+    width: 40%;
+    padding: .25rem .35rem;
+    text-align: center;
+}
+
+th:first-child, td:first-child{
+    width: 20%;
+}
+
+th {
+    background-color: #224592;
+    color: #fff;
+}
+
+tr:nth-child(odd) td {
+    background-color: #fff;
+    border-bottom: 1px solid #224592;
+}
+
+tr:nth-child(even) td {
+    border-bottom: 1px solid #224592;
+}
+
+.table-paise__icon-group {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.table-paise__icon-group img {
+    display: inline-block;
+    box-sizing: content-box;
 }
