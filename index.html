@@ -13,19 +13,22 @@
         <h1>Países</h1>
     </header>
     <main>
-        <section class="regiaoInputDados">
-            <div class="inputs">
-                <label>Nome do País</label>
-                <input type="text" class="form-input" id="nome" value="Brasil">
-                <label>Região do País</label>
-                <select id="regiao">
+        <form class="form-paises">
+            <fieldset class="form-paises__group">
+                <legend>Informações do País</legend>
+                
+                <label for="nome">Nome do País</label>
+                <input type="text" class="form-paises__input form-paises--focus" id="nome" value="Brasil">
+                
+                <label for="regiao">Região do País</label>
+                <select id="regiao" class="form-paises__select form-paises--focus">
                     <option disabled selected value="">Selecione uma região</option>
                 </select>
-            </div>
+            </fieldset>
             
-            <input type="button" value="Inserir" id="btn" class="btn-input" 
+            <input type="button" value="Inserir" id="btn" class="form-paises__button" 
             onclick="incluir()">
-        </section>
+        </form>
 
         <h2>Filtro</h2>
         <select id="filtroRegioes" onchange="filtrarRegiao()">
@@ -37,6 +40,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Pais</th>
                     <th>Região</th>
                 </tr>

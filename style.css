@@ -27,31 +27,50 @@ main {
     padding: .5rem;
 }
 
-.regiaoInputDados {
+.form-paises {
     display: grid;
-    gap: .5rem;
-    padding: .5rem;
+    gap: .8rem;
+    padding: .75rem;
+    border: 2px solid #224592;
+    border-radius: .5rem;
+    margin-top: 1rem;
 }
 
-.inputs {
+.form-paises__group {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: .5rem;
+    gap: .75rem;
+    position: relative;
+    margin-top: .75rem;
+    border: none;
 }
 
-.inputs label {
+.form-paises__group legend {
+    position: absolute;
+    top: -2.4rem;
+    left: -0.35rem;
+    background-color: #ecfaff;
+    padding: 0 .25rem;
     font-weight: bold;
+    font-size: 1.25rem;
 }
-.form-input {
+
+.form-paises__group label {
+    font-weight: bold;
+    padding: .1rem 0;
+}
+
+.form-paises__input{
     padding: .1rem;
     outline: none;
-    border: 1px solid #4a75d3;
-}
-.form-input:focus{
-    border: 1px solid #183066
 }
 
-.btn-input{
+.form-paises--focus:focus{
+    border: 1px solid transparent;
+    outline: 2px solid #183066
+}
+
+.form-paises__button{
     justify-self: end;
     padding: .4rem .6rem;
     border-radius: .2rem;
@@ -61,7 +80,7 @@ main {
     transition: .2s;
 }
 
-.btn-input:hover{
+.form-paises__button:hover{
     background-color: #67bcd8;
     transition: .2s;
 }
