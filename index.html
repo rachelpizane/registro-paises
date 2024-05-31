@@ -30,16 +30,13 @@
             onclick="incluir()">
         </form>
 
-        <h2>Filtro</h2>
-        <select id="filtroRegioes" onchange="filtrarRegiao()">
-            <option disabled selected value="">Selecione uma região</option>
-        </select>
-        <ul>
-            <li><a href="#" onclick="proximo()">Próximo</a></li>
-        </ul>
-
         <section class="section-table-paises">
             <h2>Registro dos Países</h2>
+          
+            <select class="table-paises__filtro" id="filtroRegioes" onchange="filtrarRegiao()">
+                <option disabled selected value="">Selecione uma região</option>
+            </select>
+            
             <table class="table-paises">
                 <thead class="table-paises__head">
                     <tr>
@@ -69,18 +66,20 @@
                         <td>Brasil</td>
                         <td>América do Sul</td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Brasil</td>
-                        <td>América do Sul</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Brasil</td>
-                        <td>América do Sul</td>
-                    </tr>
                 </tbody>
             </table>
+
+            <nav class="pagination-paises">
+                <a id="pag-anterior" class="pagination-paises__nav" href="#" onclick="proximo()">
+                    <img src="img/arrow-left.svg" alt="">
+                    Anterior
+                </a>
+                <a id="pag-proximo" class="pagination-paises__nav" href="#" onclick="proximo()"> 
+                    Próximo 
+                    <img src="img/arrow-right.svg" alt="">
+                </a>
+            </nav>
+
         </section>
     </main>
     <script src="script.js"></script>
