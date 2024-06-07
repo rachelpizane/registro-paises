@@ -10,12 +10,15 @@ body {
     font-family: "Urbanist";
     background-color:#ecfaff;
     color: #224592;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
 }
 
 header {
     background-color: #224592;
     color: white;
-    padding: .5rem;
+    padding: .75rem .5rem;
 }
 
 header h1 {
@@ -136,6 +139,7 @@ tr:nth-child(even) td {
     display: inline-block;
     box-sizing: content-box;
 }
+
 /* Seção de naveção entre paginas */
 
 .pagination-paises{
@@ -167,4 +171,17 @@ tr:nth-child(even) td {
 
 .stay-left {
     justify-content: flex-start;
+}
+
+/* Footer  */
+footer {
+    padding: .75rem .5rem;
+    text-align: center;
+    font-size: .85rem;
+    background-color:  #224592;
+    color: #fff;
+}
+
+.footer__link {
+    color: #fff;
 }

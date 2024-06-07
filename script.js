@@ -1,5 +1,5 @@
 // ---- Global ----
-let regioes = [
+let continentes = [
   "África",
   "América do Norte",
   "América do Sul",
@@ -18,10 +18,10 @@ let qntdPorPagina = 3
 
 // ---- Front ----
 
-function selecaoRegiao(regioes,id) {
+function selecaoRegiao(continentes,id) {
   let select = document.getElementById(id);
 
-  regioes.forEach((func) => {
+  continentes.forEach((func) => {
     let option = document.createElement("option");
     option.innerText = func;
     select.appendChild(option);
@@ -54,12 +54,12 @@ function atualizarDados(paisesFilter = null){
 }
 
 function filtrarRegiao(){
-    let regiao = document.getElementById("filtroRegioes").value
-    if(regiao === ""){
+    let continente = document.getElementById("filtroContinentes").value
+    if(continente === ""){
         atualizarDados()
     } else{
         let paisesFilter = paises.filter((pais)=>{
-            return regiao === pais.regiao
+            return continente === pais.continente
         });
         atualizarDados(paisesFilter) 
     }
@@ -78,8 +78,8 @@ function proximo(){
     }
 }
 // Chamadas ----
-selecaoRegiao(regioes, "regiao");
-selecaoRegiao(regioes, "filtroRegioes");
+selecaoContinente(continentes, "continente");
+selecaoContinente(continentes, "filtroContinentes");
 
 //   ---- Back ----
 function inclusao(nome, regiao){

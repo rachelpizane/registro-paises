@@ -1,8 +1,8 @@
-# Tabela de países e regiões 
+# Tabela de países e continentes 
 
 ## 1. Introdução 📝
 
-Este projeto é um sistema de registro de países e suas respectivas regiões. A cada novo registro inserido pelo usuário, uma nova linha é automaticamente adicionada a uma tabela dinâmica. Além disso, a aplicação permite filtrar a tabela pelo nome da região, exibindo apenas as linhas correspondentes ao valor especificado.
+Este projeto é um sistema de registro de países e seus respectivos continentes. A cada novo registro inserido pelo usuário, uma nova linha é automaticamente adicionada a uma tabela dinâmica. Além disso, a aplicação permite filtrar a tabela pelo nome do continente, exibindo apenas as linhas correspondentes ao valor especificado.
 
 O objetivo deste repositório é treinar algumas funcionalidades aprendidas na aula de Programação Web com JavaScript II do Instituto Infnet.
 <br>
@@ -20,7 +20,7 @@ Em construção 🛠️
 
 ### 3.2 Links
 
-- Live Site URL: [GitHub Page - Tabela de países e regiões](https://rachelpizane.github.io/tabela_paises/)
+- Live Site URL: [GitHub Page - Tabela de países e continentes](https://rachelpizane.github.io/tabela_paises/)
 
 ## 4. Meu processo 🗺️
 

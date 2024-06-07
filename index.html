@@ -16,27 +16,26 @@
         <form class="form-paises">
             <fieldset class="form-paises__group">
                 <legend>Informações do País</legend>
-                
+
                 <label for="nome">Nome do País</label>
                 <input type="text" class="form-paises__input form-paises--focus" id="nome" value="Brasil">
-                
-                <label for="regiao">Região do País</label>
+
+                <label for="regiao">Continente</label>
                 <select id="regiao" class="form-paises__select form-paises--focus">
-                    <option disabled selected value="">Selecione uma região</option>
+                    <option disabled selected value="">Selecione uma continente</option>
                 </select>
             </fieldset>
-            
-            <input type="button" value="Inserir" id="btn" class="form-paises__button" 
-            onclick="incluir()">
+
+            <input type="button" value="Inserir" id="btn" class="form-paises__button" onclick="incluir()">
         </form>
 
         <section class="section-table-paises">
             <h2>Registro dos Países</h2>
-          
+
             <select class="table-paises__filtro" id="filtroRegioes" onchange="filtrarRegiao()">
-                <option disabled selected value="">Selecione uma região</option>
+                <option disabled selected value="">Selecione uma continente</option>
             </select>
-            
+
             <table class="table-paises">
                 <thead class="table-paises__head">
                     <tr>
@@ -50,7 +49,7 @@
                         <th>
                             <div class="table-paise__icon-group">
                                 <img src="img/world.svg" alt="icon-flag">
-                                Região
+                                Continente
                             </div>
                         </th>
                     </tr>
@@ -74,13 +73,18 @@
                     <img src="img/arrow-left.svg" alt="">
                     Anterior
                 </a>
-                <a id="pag-proximo" class="pagination-paises__nav" href="#" onclick="proximo()"> 
-                    Próximo 
+                <a id="pag-proximo" class="pagination-paises__nav" href="#" onclick="proximo()">
+                    Próximo
                     <img src="img/arrow-right.svg" alt="">
                 </a>
             </nav>
         </section>
     </main>
+
+    <footer>
+        <p class="footer__text">Coded by <a class="footer__link" href="https://github.com/rachelpizane" target="_blank">Rachel Pizane</a>.</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 
