@@ -7,7 +7,7 @@
 }
 
 body {
-    font-family: "Urbanist";
+    font-family: "Urbanist", sans-serif;
     background-color:#ecfaff;
     color: #224592;
     display: grid;
@@ -19,6 +19,7 @@ header {
     background-color: #224592;
     color: white;
     padding: .75rem .5rem;
+    box-shadow: 0px 1px 7px #737a7c;
 }
 
 header h1 {
@@ -26,7 +27,7 @@ header h1 {
 }
 
 main {
-    padding: .5rem;
+    padding: 1rem;
 }
 
 .form-paises {
@@ -62,9 +63,14 @@ main {
     padding: .1rem 0;
 }
 
-.form-paises__input{
-    padding: .1rem;
+.form-paises__input, .form-paises__select, .table-paises__filtro{
+    font-family: "Urbanist", sans-serif;
+    padding: .1rem .15rem;
     outline: none;
+    border: 1px solid #183066;
+    border-radius: .1rem;
+    background-color: #f7fbfc;
+    color: #183066;
 }
 
 .form-paises--focus:focus, .table-paises__filtro:focus{
@@ -74,7 +80,7 @@ main {
 
 .form-paises__button{
     justify-self: end;
-    padding: .4rem .6rem;
+    padding: .55rem .75rem;
     border-radius: .2rem;
     background-color: #72d2f1;
     color: #fff;
@@ -180,8 +186,16 @@ footer {
     font-size: .85rem;
     background-color:  #224592;
     color: #fff;
+    box-shadow: 0px 1px 7px #737a7c;
 }
 
 .footer__link {
     color: #fff;
+}
+
+@media (min-width: 768px){
+    main {
+        place-self: start center;
+        min-width: 700px;
+    }
 }
