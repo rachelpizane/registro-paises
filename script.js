@@ -1,109 +1,186 @@
-// ---- Global ----
-let continentes = [
+const continentes = [
   "África",
-  "América do Norte",
-  "América do Sul",
+  "América",
   "Antártida",
   "Ásia",
   "Europa",
   "Oceania",
 ];
 
+class Pais {
+  constructor(id, nome, continente) {
+    this.id = id;
+    this.nome = nome;
+    this.continente = continente;
+  }
+}
 
-let paises = [];
+const paises = [];
+let id = 0;
+let paisesFilter;
 
+// Em analise - INICIO
 let paginaAtual = 1;
-let qntdPorPagina = 3
+let qntdPorPagina = 3;
 
+let btnProximo = document.getElementById("pag-proximo");
+let btnAnterior = document.getElementById("pag-anterior");
+let nav = document.getElementById("nav");
+let totalPaginas;
 
-// ---- Front ----
+function atualizarTotalPaginas() {
+  totalPaginas = Math.ceil(paisesFilter.length / qntdPorPagina);
+  atualizarBotoesPagina();
+} // em analise
 
-function selecaoRegiao(continentes,id) {
+function mudarClasse(elemento, classe, acao) {
+  if (acao === "add") {
+    elemento.classList.add(classe);
+  } else if (acao === "remove") {
+    elemento.classList.remove(classe);
+  }
+}
+
+function atualizarBotoesPagina() {
+  if (totalPaginas > 1) {
+    console.log(totalPaginas);
+    if (paginaAtual === 1) {
+      mudarClasse(btnAnterior, "hidden", "add");
+      mudarClasse(btnProximo, "hidden", "remove");
+
+      mudarClasse(nav, "stay-right", "add");
+      mudarClasse(nav, "stay-left", "remove");
+    } else if (paginaAtual < totalPaginas) {
+      mudarClasse(btnAnterior, "hidden", "remove");
+      mudarClasse(btnProximo, "hidden", "remove");
+
+      mudarClasse(nav, "stay-right", "remove");
+    } else if (paginaAtual === totalPaginas) {
+      mudarClasse(btnAnterior, "hidden", "remove");
+      mudarClasse(btnProximo, "hidden", "add");
+
+      mudarClasse(nav, "stay-right", "remove");
+    }
+  }
+} //em analise
+
+function irParaPaginaAnterior() {
+  if (paginaAtual > 1) {
+    paginaAtual--;
+
+    atualizarDadosDaTabela();
+    atualizarBotoesPagina();
+  }
+}  //em analise
+
+function irParaPaginaProxima() {
+  if (paginaAtual < totalPaginas) {
+    paginaAtual++;
+
+    atualizarDadosDaTabela();
+    atualizarBotoesPagina();
+  }
+}  //em analise
+
+function adicionarOpcoesParaSelect(id) {
   let select = document.getElementById(id);
 
-  continentes.forEach((func) => {
+  continentes.forEach((continente) => {
     let option = document.createElement("option");
-    option.innerText = func;
+    option.innerText = continente;
     select.appendChild(option);
   });
-}
-function incluir(){
-    let nome = document.getElementById("nome").value;
-    let regiao = document.getElementById("regiao").value;
+} //ok
 
-    inclusao(nome, regiao)
-    atualizarDados()
-}
+function validarInformacoesPaises(nome, continente) {
+  if (nome != "" && isNaN(nome) && continente !== "") {
+    return {
+      ehValidado: true,
+    };
+  } else {
+    return {
+      ehValidado: false,
+      mensagem: "Preencha os campos corretamente.",
+    };
+  }
+} //ok
 
-function atualizarDados(paisesFilter = null){
+function capturarInformacoesPaises() {
+  let nome = document.getElementById("nome");
+  let continente = document.getElementById("continente");
 
-    let paisesAtualizado = paisesFilter == null ? paises : paisesFilter;
+  let validaCampos = validarInformacoesPaises(nome.value, continente.value);
 
-    let tabela = document.getElementById("tabela");
+  if (validaCampos.ehValidado) {
+    ++id;
+    adicionarInformaçoesPaisesParaLista(id, nome.value, continente.value);
 
-    tabela.innerHTML =""
-    paisesAtualizado.forEach((pais)=>{
-        let newLine = document.createElement("tr")
-        for(j in pais){
-            let newData= document.createElement("td")
-            newData.innerHTML = pais[j];
-            newLine.appendChild(newData)
-        }
-        tabela.appendChild(newLine)
-    })
-}
+    resetarFiltro();
+    atualizarDadosDaTabela();
+  } else {
+    alert(validaCampos.mensagem);
+  }
 
-function filtrarRegiao(){
-    let continente = document.getElementById("filtroContinentes").value
-    if(continente === ""){
-        atualizarDados()
-    } else{
-        let paisesFilter = paises.filter((pais)=>{
-            return continente === pais.continente
-        });
-        atualizarDados(paisesFilter) 
+  // nome.value = "";
+  // continente.children[0].selected = true;
+} // em analise
+
+function adicionarInformaçoesPaisesParaLista(id, nome, continente) {
+  paises.push(new Pais(id, nome, continente));
+} //ok
+
+function atualizarDadosDaTabela() {
+  // let paisesAtualizado = paisesFilter == null ? paises : paisesFilter;
+  console.log(paginaAtual + " - " + totalPaginas + " - " + paisesFilter.length)
+  let posInicio = (paginaAtual - 1) * qntdPorPagina;
+  let posFim = posInicio + qntdPorPagina;
+
+  paisesExibir = paisesFilter.slice(posInicio, posFim)
+
+  const sectionTabela = document.getElementById("sectionTabela");
+  mudarClasse(sectionTabela, "hidden", "remove");
+
+  const tabela = document.getElementById("tabela");
+  tabela.innerHTML = "";
+
+  paisesExibir.forEach((pais) => {
+    let novaLinha = document.createElement("tr");
+
+    for (i in pais) {
+      let novoDado = document.createElement("td");
+      novoDado.innerHTML = pais[i];
+      novaLinha.appendChild(novoDado);
     }
+    tabela.appendChild(novaLinha);
+  });
+}  //em analise
+
+function filtrarPorContinente() {
+  const continenteFiltro = document.getElementById("filtroContinentes").value;
+  paginaAtual = 1;
+
+  if (continenteFiltro === "") {
+    paisesFilter = paises;
+    atualizarTotalPaginas()
+    atualizarDadosDaTabela();
+  } else {
+    paisesFilter = paises.filter((pais) => {
+      return continenteFiltro === pais.continente;
+    });
+    atualizarTotalPaginas()
+   
+    atualizarDadosDaTabela();
+  }
+}  //em analise
+
+function resetarFiltro() {
+  let continenteFiltro = document.getElementById("filtroContinentes");
+  continenteFiltro.children[0].selected = true;
+  filtrarPorContinente();
 }
 
-function proximo(){
-    let totalPag = Math.ceil(paises.length / qntdPorPagina);
-    if(paginaAtual < totalPag){
-        let a = (paginaAtual - 1) * qntdPorPagina;
-        let b = a + qntdPorPagina
-        atualizarDados().slice(a, b)
-        paginaAtual++
-        console.log(paginaAtual)
-    } else{
-        alert("Fim")
-    }
-}
-// Chamadas ----
-selecaoContinente(continentes, "continente");
-selecaoContinente(continentes, "filtroContinentes");
-
-//   ---- Back ----
-function inclusao(nome, regiao){
-    class pais{
-        constructor(nome, regiao){
-            this.nome = nome;
-            this.regiao = regiao;
-        }
-    }
-    paises.push(new pais(nome, regiao))
-}
-
-let num = [1,2,5,6,4,7,8,9,10,13]
-let totalPagNum = Math.ceil(num.length / 3);
-let a = 4;
-let b = a + 3;
-console.log(num.slice(a, b))
-console.log(totalPag)
-
-for(let i = 0; i < totalPagNum; i++){
-    let a = i * qntdPorPagina;
-    let b = a + qntdPorPagina;
-    console.log(a)
-    console.log(num.slice(a, b))
-}
-
-
+//  Ativar funções
+window.onload = function () {
+  adicionarOpcoesParaSelect("continente");
+  adicionarOpcoesParaSelect("filtroContinentes");
+};
