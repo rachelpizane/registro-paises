@@ -9,7 +9,7 @@
     <title>Registro dos países</title>
 </head>
 
-<body>
+<body id="bodyForm">
     <header>
         <h1>Países</h1>
     </header>
@@ -19,25 +19,25 @@
                 <legend>Informações do País</legend>
 
                 <label for="nome">Nome do País</label>
-                <input type="text" class="form-paises__input form-paises--focus" id="nome" value="Brasil">
+                <input type="text" class="form-paises__input form-paises--focus" id="nome" placeholder="Informe o nome do país" value="brasil">
 
-                <label for="regiao">Continente</label>
-                <select id="regiao" class="form-paises__select form-paises--focus">
+                <label for="continente">Continente</label>
+                <select id="continente" class="form-paises__select form-paises--focus">
                     <option disabled selected value="">Selecione um continente</option>
                 </select>
             </fieldset>
 
-            <input type="button" value="Inserir" id="btn" class="form-paises__button" onclick="incluir()">
+            <input type="button" value="Inserir" id="btn" class="form-paises__button" onclick="capturarInformacoesPaises()">
         </form>
 
-        <section class="section-table-paises">
+        <section id="sectionTabela" class="section-table-paises hidden">
             <h2>Registro dos Países</h2>
 
-            <select class="table-paises__filtro" id="filtroRegioes" onchange="filtrarRegiao()">
-                <option disabled selected value="">Selecione um continente</option>
+            <select class="table-paises__filtro" id="filtroContinentes" onchange="filtrarPorContinente()">
+                <option selected value="">Selecione um continente</option>
             </select>
 
-            <table class="table-paises">
+            <table id="tabelaPrincipal" class="table-paises">
                 <thead class="table-paises__head">
                     <tr>
                         <th>ID</th>
@@ -56,25 +56,15 @@
                     </tr>
                 </thead>
                 <tbody id="tabela" class="table-paises__body">
-                    <tr>
-                        <td>1</td>
-                        <td>Brasil</td>
-                        <td>América do Sul</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Brasil</td>
-                        <td>América do Sul</td>
-                    </tr>
                 </tbody>
             </table>
 
-            <nav class="pagination-paises">
-                <a id="pag-anterior" class="pagination-paises__nav" href="#" onclick="proximo()">
+            <nav id="nav" class="pagination-paises" >
+                <a id="pag-anterior" class="pagination-paises__nav hidden" href="#" onclick="irParaPaginaAnterior()">
                     <img src="img/arrow-left.svg" alt="">
                     Anterior
                 </a>
-                <a id="pag-proximo" class="pagination-paises__nav" href="#" onclick="proximo()">
+                <a id="pag-proximo" class="pagination-paises__nav hidden" href="#" onclick="irParaPaginaProxima()">
                     Próximo
                     <img src="img/arrow-right.svg" alt="">
                 </a>
