@@ -19,9 +19,8 @@ const paises = [];
 let id = 0;
 let paisesFilter;
 
-// Em analise - INICIO
 let paginaAtual = 1;
-let qntdPorPagina = 3;
+const qntdPorPagina = 3;
 
 let btnProximo = document.getElementById("pag-proximo");
 let btnAnterior = document.getElementById("pag-anterior");
@@ -30,8 +29,7 @@ let totalPaginas;
 
 function atualizarTotalPaginas() {
   totalPaginas = Math.ceil(paisesFilter.length / qntdPorPagina);
-  atualizarBotoesPagina();
-} // em analise
+}
 
 function mudarClasse(elemento, classe, acao) {
   if (acao === "add") {
@@ -50,17 +48,22 @@ function atualizarBotoesPagina() {
 
       mudarClasse(nav, "stay-right", "add");
       mudarClasse(nav, "stay-left", "remove");
+
     } else if (paginaAtual < totalPaginas) {
       mudarClasse(btnAnterior, "hidden", "remove");
       mudarClasse(btnProximo, "hidden", "remove");
 
       mudarClasse(nav, "stay-right", "remove");
+
     } else if (paginaAtual === totalPaginas) {
       mudarClasse(btnAnterior, "hidden", "remove");
       mudarClasse(btnProximo, "hidden", "add");
 
       mudarClasse(nav, "stay-right", "remove");
     }
+  } else {
+    mudarClasse(btnProximo, "hidden", "add");
+    mudarClasse(btnAnterior, "hidden", "add");
   }
 } //em analise
 
@@ -71,7 +74,7 @@ function irParaPaginaAnterior() {
     atualizarDadosDaTabela();
     atualizarBotoesPagina();
   }
-}  //em analise
+}
 
 function irParaPaginaProxima() {
   if (paginaAtual < totalPaginas) {
@@ -80,7 +83,7 @@ function irParaPaginaProxima() {
     atualizarDadosDaTabela();
     atualizarBotoesPagina();
   }
-}  //em analise
+} 
 
 function adicionarOpcoesParaSelect(id) {
   let select = document.getElementById(id);
@@ -90,20 +93,20 @@ function adicionarOpcoesParaSelect(id) {
     option.innerText = continente;
     select.appendChild(option);
   });
-} //ok
+}
 
 function validarInformacoesPaises(nome, continente) {
   if (nome != "" && isNaN(nome) && continente !== "") {
     return {
-      ehValidado: true,
+      ehValidado: true
     };
   } else {
     return {
       ehValidado: false,
-      mensagem: "Preencha os campos corretamente.",
+      mensagem: "Preencha os campos corretamente."
     };
   }
-} //ok
+}
 
 function capturarInformacoesPaises() {
   let nome = document.getElementById("nome");
@@ -114,24 +117,21 @@ function capturarInformacoesPaises() {
   if (validaCampos.ehValidado) {
     ++id;
     adicionarInformaçoesPaisesParaLista(id, nome.value, continente.value);
-
     resetarFiltro();
-    atualizarDadosDaTabela();
+
   } else {
     alert(validaCampos.mensagem);
   }
 
-  // nome.value = "";
-  // continente.children[0].selected = true;
-} // em analise
+  nome.value = "";
+  continente.children[0].selected = true;
+}
 
 function adicionarInformaçoesPaisesParaLista(id, nome, continente) {
   paises.push(new Pais(id, nome, continente));
-} //ok
+}
 
 function atualizarDadosDaTabela() {
-  // let paisesAtualizado = paisesFilter == null ? paises : paisesFilter;
-  console.log(paginaAtual + " - " + totalPaginas + " - " + paisesFilter.length)
   let posInicio = (paginaAtual - 1) * qntdPorPagina;
   let posFim = posInicio + qntdPorPagina;
 
@@ -153,33 +153,33 @@ function atualizarDadosDaTabela() {
     }
     tabela.appendChild(novaLinha);
   });
-}  //em analise
+} 
 
 function filtrarPorContinente() {
   const continenteFiltro = document.getElementById("filtroContinentes").value;
   paginaAtual = 1;
-
+  
   if (continenteFiltro === "") {
     paisesFilter = paises;
-    atualizarTotalPaginas()
+
+    atualizarTotalPaginas();
+    atualizarBotoesPagina();
     atualizarDadosDaTabela();
   } else {
-    paisesFilter = paises.filter((pais) => {
-      return continenteFiltro === pais.continente;
-    });
-    atualizarTotalPaginas()
-   
+    paisesFilter = paises.filter((pais) => continenteFiltro === pais.continente);
+
+    atualizarTotalPaginas();
+    atualizarBotoesPagina();
     atualizarDadosDaTabela();
   }
-}  //em analise
+}
 
 function resetarFiltro() {
-  let continenteFiltro = document.getElementById("filtroContinentes");
+  const continenteFiltro = document.getElementById("filtroContinentes");
   continenteFiltro.children[0].selected = true;
   filtrarPorContinente();
 }
 
-//  Ativar funções
 window.onload = function () {
   adicionarOpcoesParaSelect("continente");
   adicionarOpcoesParaSelect("filtroContinentes");

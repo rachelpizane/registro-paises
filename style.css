@@ -1,14 +1,16 @@
+:root {
+    --main-bg-color: #ecfaff;
+}
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
 *{
     margin: 0px;
     padding: 0px;
-    /* border: 1px solid red; */
 }
 
 body {
     font-family: "Urbanist", sans-serif;
-    background-color:#ecfaff;
+    background-color: var(--main-bg-color);
     color: #224592;
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -146,7 +148,7 @@ tr:nth-child(even) td {
     box-sizing: content-box;
 }
 
-/* Seção de naveção entre paginas */
+/* Seção de navegação entre paginas */
 
 .pagination-paises{
     margin: .25rem 0;
@@ -165,6 +167,17 @@ tr:nth-child(even) td {
     color: #fff;
     padding: .4rem .6rem;
     border-radius: .2rem;
+}
+
+/* Versão Desktop */
+@media (min-width: 768px){
+    main {
+        place-self: start center;
+        min-width: 700px;
+    }
+    header {
+        text-align: center;
+    }
 }
 
 /* Javascript */
@@ -194,9 +207,3 @@ footer {
     color: #fff;
 }
 
-@media (min-width: 768px){
-    main {
-        place-self: start center;
-        min-width: 700px;
-    }
-}
