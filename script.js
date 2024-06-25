@@ -27,6 +27,8 @@ const btnProximo = document.getElementById("pag-proximo");
 const btnAnterior = document.getElementById("pag-anterior");
 const nav = document.getElementById("nav");
 
+const filtroContinente = document.getElementById("filtroContinentes");
+
 // Atualiza o total de páginas com base no número de países filtrados e a quantidade de itens por página
 function atualizarTotalPaginas() {
   totalPaginas = Math.ceil(paisesFiltrados.length / qntdPorPagina);
@@ -153,7 +155,6 @@ function adicionarPaisNaLista(id, nome, continente) {
 
 // Reseta o filtro de continentes para a opção padrão e aplica o filtro.
 function resetarFiltro() {
-  const filtroContinente = document.getElementById("filtroContinentes");
   filtroContinente.children[0].selected = true;
 
   filtrarPorContinente();
@@ -161,15 +162,14 @@ function resetarFiltro() {
 
 // Filtra os países com base no continente selecionado no filtro de continentes.
 function filtrarPorContinente() {
-  const filtroContinente = document.getElementById("filtroContinentes").value;
   paginaAtual = 1;
 
-  if (filtroContinente === "") {
+  if (filtroContinente.value === "") {
     paisesFiltrados = paises; // Se nenhum continente for selecionado, mostra todos os países
 
   } else {
     paisesFiltrados = paises.filter(
-      (pais) => filtroContinente === pais.continente
+      (pais) => filtroContinente.value === pais.continente
     ); // Filtra países pelo continente selecionado
   }
 
@@ -216,4 +216,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Adiciona event listeners aos botões de navegação
   btnProximo.addEventListener("click", irParaPaginaProxima);
   btnAnterior.addEventListener("click", irParaPaginaAnterior);
+
+  // Adiciona event listener ao filtro de continentes
+  filtroContinente.addEventListener("change", filtrarPorContinente)
+  
+  // Adiciona event listener ao botão de adicionar país
+  document.getElementById("btn").addEventListener("click", capturarInformacoesPaises)
 });
