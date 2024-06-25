@@ -19,13 +19,13 @@ const paises = [];
 let id = 0;
 let paisesFiltrados;
 
-let paginaAtual = 1;
 const qntdPorPagina = 3;
+let paginaAtual = 1;
+let totalPaginas;
 
 const btnProximo = document.getElementById("pag-proximo");
 const btnAnterior = document.getElementById("pag-anterior");
 const nav = document.getElementById("nav");
-let totalPaginas;
 
 // Atualiza o total de páginas com base no número de países filtrados e a quantidade de itens por página
 function atualizarTotalPaginas() {
@@ -58,13 +58,15 @@ function atualizarBotoesPagina() {
   // Verifica se há mais de uma página
   if (totalPaginas > 1) {
     if (paginaAtual === 1) {
-      // Na primeira página, esconde o botão "anterior", mostra o botão "próximo",  adiciona classe ao nav que faz com que o botão visível fique à direita da tela.
+      // Na primeira página, esconde o botão "anterior", mostra o botão "próximo" e adiciona uma classe ao nav que faz com que o botão visível esteja à direita da tela.
       atualizarClasseBotoes("add", "remove", "add");
+
     } else if (paginaAtual < totalPaginas) {
-      // Páginas intermediárias: mostra ambos os botões e remove classe do nav
+      // Páginas intermediárias: mostra ambos os botões e remove a classe do nav
       atualizarClasseBotoes("remove", "remove", "remove");
+
     } else if (paginaAtual === totalPaginas) {
-      // Última página: mostra botão "anterior", esconde "próximo" e remove classe do nav
+      // Última página: mostra botão "anterior", esconde "próximo" e remove a classe do nav
       atualizarClasseBotoes("remove", "add", "remove");
     }
   } else {
@@ -73,13 +75,18 @@ function atualizarBotoesPagina() {
   }
 }
 
+// Atualiza a tabela e os botões de navegação
+function atualizarTabelaENavegacao(){
+  atualizarDadosDaTabela()
+  atualizarBotoesPagina()
+}
+
 // Navega para a página anterior, se possível, e atualiza a tabela e os botões de navegação
 function irParaPaginaAnterior() {
   if (paginaAtual > 1) {
     paginaAtual--;
 
-    atualizarDadosDaTabela();
-    atualizarBotoesPagina();
+    atualizarTabelaENavegacao()
   }
 }
 
@@ -88,8 +95,7 @@ function irParaPaginaProxima() {
   if (paginaAtual < totalPaginas) {
     paginaAtual++;
 
-    atualizarDadosDaTabela();
-    atualizarBotoesPagina();
+    atualizarTabelaENavegacao()
   }
 }
 
@@ -106,7 +112,7 @@ function adicionarOpcoesParaSelect(id) {
 
 // Valida se o nome não está vazio e não é numérico.
 function validarNome(nome) {
-  return (nome != "") & isNaN(nome);
+  return nome != "" && isNaN(nome);
 }
 
 // Valida se foi selecionado um continente.
@@ -114,7 +120,7 @@ function validarContinente(continente) {
   return continente !== "";
 }
 
-// Captura as informações do nome e continente dos elementos HTML e, se validas, adiciona à lista de países;
+// Captura as informações do nome e continente dos elementos HTML e, se válidas, adiciona à lista de países;
 function capturarInformacoesPaises() {
   const nome = document.getElementById("nome");
   const continente = document.getElementById("continente");
@@ -123,16 +129,17 @@ function capturarInformacoesPaises() {
   const validaContinente = validarContinente(continente.value);
 
   if (!validaNome) {
-    alert("Nome inválido. Preencha novamente");
+    alert("Nome inválido. Preencha novamente.");
     return;
   }
+
   if (!validaContinente) {
     alert("Selecione um dos continentes.");
     return;
   }
 
   ++id;
-  adicionarInformaçoesPaisesLista(id, nome.value, continente.value);
+  adicionarPaisNaLista(id, nome.value, continente.value);
   resetarFiltro();
 
   nome.value = "";
@@ -140,33 +147,34 @@ function capturarInformacoesPaises() {
 }
 
 //Adiciona um novo país à lista de países.
-function adicionarInformaçoesPaisesLista(id, nome, continente) {
+function adicionarPaisNaLista(id, nome, continente) {
   paises.push(new Pais(id, nome, continente));
 }
 
 // Reseta o filtro de continentes para a opção padrão e aplica o filtro.
 function resetarFiltro() {
-  const continenteFiltro = document.getElementById("filtroContinentes");
-  continenteFiltro.children[0].selected = true;
+  const filtroContinente = document.getElementById("filtroContinentes");
+  filtroContinente.children[0].selected = true;
+
   filtrarPorContinente();
 }
 
 // Filtra os países com base no continente selecionado no filtro de continentes.
 function filtrarPorContinente() {
-  const continenteFiltro = document.getElementById("filtroContinentes").value;
+  const filtroContinente = document.getElementById("filtroContinentes").value;
   paginaAtual = 1;
 
-  if (continenteFiltro === "") {
+  if (filtroContinente === "") {
     paisesFiltrados = paises; // Se nenhum continente for selecionado, mostra todos os países
+
   } else {
     paisesFiltrados = paises.filter(
-      (pais) => continenteFiltro === pais.continente
+      (pais) => filtroContinente === pais.continente
     ); // Filtra países pelo continente selecionado
   }
 
   atualizarTotalPaginas();
-  atualizarBotoesPagina();
-  atualizarDadosDaTabela();
+  atualizarTabelaENavegacao()
 }
 
 // Atualiza os dados exibidos na tabela com base na página atual e nos países filtrados.
@@ -189,17 +197,23 @@ function atualizarDadosDaTabela() {
   paisesExibir.forEach((pais) => {
     const novaLinha = document.createElement("tr");
 
-    for (i in pais) {
+    for (const i in pais) {
       const novoDado = document.createElement("td");
       novoDado.innerHTML = pais[i];
+      
       novaLinha.appendChild(novoDado);
     }
     tabela.appendChild(novaLinha);
   });
 }
 
-// Ao carregar a página, adiciona opções de continentes aos elementos <select> relevantes
+// Ao carregar a página:
 document.addEventListener("DOMContentLoaded", function () {
+  // adiciona opções de continentes aos elementos <select> relevantes
   adicionarOpcoesParaSelect("continente");
   adicionarOpcoesParaSelect("filtroContinentes");
+
+  // Adiciona event listeners aos botões de navegação
+  btnProximo.addEventListener("click", irParaPaginaProxima);
+  btnAnterior.addEventListener("click", irParaPaginaAnterior);
 });
