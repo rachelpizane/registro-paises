@@ -27,13 +27,13 @@
                 </select>
             </fieldset>
 
-            <input type="button" value="Inserir" id="btn" class="form-paises__button" onclick="capturarInformacoesPaises()">
+            <input type="button" value="Inserir" id="btn" class="form-paises__button">
         </form>
 
         <section id="sectionTabela" class="section-table-paises hidden">
             <h2>Registro dos Países</h2>
 
-            <select class="table-paises__filtro" id="filtroContinentes" onchange="filtrarPorContinente()">
+            <select class="table-paises__filtro" id="filtroContinentes">
                 <option selected value="">Selecione um continente</option>
             </select>
 
@@ -42,14 +42,14 @@
                     <tr>
                         <th>ID</th>
                         <th>
-                            <div class="table-paise__icon-group">
+                            <div class="table-paises__icon-group">
                                 <img src="img/flag.svg" alt="icon-flag">
                                 País
                             </div>
                         </th>
                         <th>
-                            <div class="table-paise__icon-group">
-                                <img src="img/world.svg" alt="icon-flag">
+                            <div class="table-paises__icon-group">
+                                <img src="img/world.svg" alt="icon-world">
                                 Continente
                             </div>
                         </th>
@@ -59,12 +59,12 @@
                 </tbody>
             </table>
 
-            <nav id="nav" class="pagination-paises" >
-                <a id="pag-anterior" class="pagination-paises__nav hidden" href="#" onclick="irParaPaginaAnterior()">
+            <nav id="nav" class="paginacao-paises">
+                <a id="pag-anterior" class="paginacao-paises__nav hidden" href="#">
                     <img src="img/arrow-left.svg" alt="">
                     Anterior
                 </a>
-                <a id="pag-proximo" class="pagination-paises__nav hidden" href="#" onclick="irParaPaginaProxima()">
+                <a id="pag-proximo" class="paginacao-paises__nav hidden" href="#">
                     Próximo
                     <img src="img/arrow-right.svg" alt="">
                 </a>
