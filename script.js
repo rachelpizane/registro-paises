@@ -60,7 +60,7 @@ function atualizarBotoesPagina() {
   // Verifica se há mais de uma página
   if (totalPaginas > 1) {
     if (paginaAtual === 1) {
-      // Na primeira página, esconde o botão "anterior", mostra o botão "próximo" e adiciona uma classe ao nav que faz com que o botão visível esteja à direita da tela.
+      // Na primeira página, esconde o botão "anterior", mostra o botão "próximo" e adiciona uma classe ao nav que faz com que o botão visível esteja à direita da tela
       atualizarClasseBotoes("add", "remove", "add");
 
     } else if (paginaAtual < totalPaginas) {
@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Adiciona event listener ao filtro de continentes
   filtroContinente.addEventListener("change", filtrarPorContinente)
-  
+
   // Adiciona event listener ao botão de adicionar país
   document.getElementById("btn").addEventListener("click", capturarInformacoesPaises)
 });
