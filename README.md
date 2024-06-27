@@ -12,7 +12,7 @@ O objetivo deste repositório é aplicar e consolidar funcionalidades aprendidas
 Conluído!
 <br>
 
-## 3. Link
+## 3. Link 🔗
 
 - Live Site URL: [GitHub Page - Tabela de países e continentes](https://rachelpizane.github.io/tabela_paises/)
 <br>
