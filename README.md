@@ -9,16 +9,20 @@ O objetivo deste repositório é aplicar e consolidar funcionalidades aprendidas
 
 ## 2. Status do projeto 🕜
 
-Conluído!
+Concluído
 <br>
 
 ## 3. Link 🔗
 
-- Live Site URL: [GitHub Page - Tabela de países e continentes](https://rachelpizane.github.io/tabela_paises/)
+- Live Site URL: [GitHub Page - Registro de países](https://rachelpizane.github.io/registro-paises/)
 <br>
 
 ## 4. Screenshot 📸
 
+<p align="center">
+<img src="img/versao-mobile.gif" alt="Mobile version" width="400">
+</p>
+<br>
 
 ## 5. Funcionalidades ⚙️
 
@@ -34,5 +38,3 @@ Conluído!
  - HTML
  - CSS
  - Javascript
-
-
