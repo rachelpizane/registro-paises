@@ -81,6 +81,7 @@ main {
 .form-paises__group label {
   font-weight: bold;
   padding: 0.1rem 0;
+  justify-self: center;
 }
 
 
