@@ -34,7 +34,6 @@ Concluído
 <br>
 
 ## 6. Tecnologias utilizadas 🔧
-
  - HTML
  - CSS
  - Javascript
